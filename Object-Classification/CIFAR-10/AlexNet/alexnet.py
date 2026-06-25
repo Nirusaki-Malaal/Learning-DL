@@ -9,25 +9,30 @@ class AlexNet(nn.Module):
         # feature extractor
         self.features = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2), # Conv1
+            nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=3, stride=2), # max pool 1
             nn.Conv2d(64,192, kernel_size=5, padding=2), # conv 2
+            nn.BatchNorm2d(192),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=3, stride=2),
             nn.Conv2d(192,384,kernel_size=3,padding=1), # conv 3
+            nn.BatchNorm2d(384),
             nn.ReLU(inplace=True),
             nn.Conv2d(384,256, kernel_size=3, padding=1), # conv 4
+            nn.BatchNorm2d(256),
             nn.ReLU(inplace=True),
             nn.Conv2d(256, 256, kernel_size=3, padding=1), #conv 5
+            nn.BatchNorm2d(256),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=3, stride=2), # max pooling
 
         )
         self.classifier = nn.Sequential(
-            nn.Dropout(0),
+            nn.Dropout(0.3),
             nn.Linear(256*6*6,4096),
             nn.ReLU(inplace=True),
-            nn.Dropout(),
+            nn.Dropout(0.3),
             nn.Linear(4096, 4096),
             nn.ReLU(inplace=True),
             nn.Linear(4096, num_classes)

@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Model weights and checkpoints
+*.pth
+*.npz
+Object-Classification/CIFAR-10/Models/
+
